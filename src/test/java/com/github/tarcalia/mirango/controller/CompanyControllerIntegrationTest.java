@@ -32,7 +32,7 @@ class CompanyControllerIntegrationTest {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    private ObjectMapper objectMapper; // JSON szerializálás és deszerializálás
+    private ObjectMapper objectMapper;
 
     @Test
     void shouldCreateCompany() throws Exception {
