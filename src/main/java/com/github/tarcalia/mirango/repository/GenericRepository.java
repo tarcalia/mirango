@@ -48,7 +48,7 @@ public abstract class GenericRepository<T extends PersistedEntity, K> {
      */
     @Transactional
     public void deleteById(K id) {
-        em.createNamedQuery(T.DELETE_BY_ID + className(), getEntityClass())
+        em.createNamedQuery(T.DELETE_BY_ID + className())
                 .setParameter(PARAM, id)
                 .executeUpdate();
     }

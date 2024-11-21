@@ -1,9 +1,13 @@
 package com.github.tarcalia.mirango.service;
 
+import com.github.tarcalia.mirango.entity.PersistedEntity;
+
 import java.util.Optional;
 import java.util.UUID;
 
-//todo add javadoc
+/**
+ * Generic service for {@link PersistedEntity}s.
+ */
 public interface GenericService<T, K> {
 
     K save(T entity);

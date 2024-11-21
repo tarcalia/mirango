@@ -10,7 +10,6 @@ public class MockUtil {
     public static final String TEST_COMPANY_NAME = "Mirango";
     public static final UUID TEST_COMPANY_ID = UUID.randomUUID();
     public static final String TEST_EMPLOYEE_NAME = "Test Janos";
-    public static final UUID TEST_EMPLOYEE_ID = UUID.randomUUID();
 
     public static Company getCompany() {
         var company = new Company();
