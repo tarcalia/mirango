@@ -23,19 +23,19 @@ public class EmployeeService implements GenericService<Employee, EmployeeDto> {
     private EmployeeRepository repository;
 
     public EmployeeDto save(Employee entity) {
-        log.info("Create/Update company: {}", entity);
+        log.info("Create/Update employee: {}", entity);
         return converter.toDto(repository.save(entity));
     }
 
     public Optional<EmployeeDto> findById(UUID id) {
-        log.info("Searching for company: {}", id);
+        log.info("Searching for employee: {}", id);
         var entity = repository.findById(id);
 
-        return entity.map(company -> converter.toDto(company));
+        return entity.map(employee -> converter.toDto(employee));
     }
 
     public void deleteById(UUID id) {
-        log.info("Deleting company: {}", id);
+        log.info("Deleting employee: {}", id);
         repository.deleteById(id);
     }
 }

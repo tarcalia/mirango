@@ -23,7 +23,7 @@ public class Converter<T, K> {
 
     public EmployeeDto toDto(Employee entity) {
         var result = toDtoPersistedValues(entity, EmployeeDto.class);
-        result.setCompany(entity.getCompany().getName());
+        result.setCompany(entity.getCompanyId().toString());
         return result;
     }
 

@@ -3,7 +3,7 @@ CREATE TABLE company (
     name                    VARCHAR(255)        NOT NULL,
     created_at              TIMESTAMP         DEFAULT CURRENT_TIMESTAMP NOT NULL,
     modified_at             TIMESTAMP,
-    version                 INTEGER DEFAULT 0
+    version                 INTEGER DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE employee (
@@ -12,6 +12,6 @@ CREATE TABLE employee (
     created_at              TIMESTAMP         DEFAULT CURRENT_TIMESTAMP NOT NULL,
     modified_at             TIMESTAMP,
     company_id UUID,
-    version INTEGER DEFAULT 0,
+    version                 INTEGER DEFAULT 0 NOT NULL,
     FOREIGN KEY (company_id) REFERENCES company(id)
 );
