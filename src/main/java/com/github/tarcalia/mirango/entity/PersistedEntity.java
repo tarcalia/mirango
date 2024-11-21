@@ -38,6 +38,5 @@ public abstract class PersistedEntity implements Serializable {
     @Column(name = "modified_at")
     OffsetDateTime modifiedAt;
     @Version
-    @Column
-    Integer version;
+    Long version;
 }

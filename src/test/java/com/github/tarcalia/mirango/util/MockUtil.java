@@ -14,15 +14,13 @@ public class MockUtil {
 
     public static Company getCompany() {
         var company = new Company();
-        company.setId(TEST_COMPANY_ID);
         company.setName(TEST_COMPANY_NAME);
-        company.setEmployees(List.of(getEmployee()));
+        company.setEmployees(List.of());
         return company;
     }
 
     public static Employee getEmployee() {
         var employee = new Employee();
-        employee.setId(TEST_EMPLOYEE_ID);
         employee.setName(TEST_EMPLOYEE_NAME);
         employee.setCompanyId(TEST_COMPANY_ID);
         return employee;

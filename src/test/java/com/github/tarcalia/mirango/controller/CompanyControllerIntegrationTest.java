@@ -1,11 +1,9 @@
 package com.github.tarcalia.mirango.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.tarcalia.mirango.entity.Company;
 import com.github.tarcalia.mirango.repository.CompanyRepository;
 import com.github.tarcalia.mirango.repository.EmployeeRepository;
 import com.github.tarcalia.mirango.util.MockUtil;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,9 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.UUID;
-
-import static com.github.tarcalia.mirango.util.MockUtil.TEST_COMPANY_ID;
 import static com.github.tarcalia.mirango.util.MockUtil.TEST_COMPANY_NAME;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -45,7 +40,7 @@ class CompanyControllerIntegrationTest {
         //when
         var result = mockMvc.perform(post("/api/company")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(company.toString()));
+                .content(companyJson));
 
         //then
         result.andExpect(status().isOk())
@@ -55,8 +50,9 @@ class CompanyControllerIntegrationTest {
     @Test
     void shouldUpdateCompany() throws Exception {
         //given
+        var id = companyRepository.save(MockUtil.getCompany()).getId();
         var newName = "Updated Company";
-        var company = MockUtil.getCompany();
+        var company = companyRepository.findById(id).get();
         company.setName(newName);
 
         var companyJson = objectMapper.writeValueAsString(company);
@@ -74,11 +70,10 @@ class CompanyControllerIntegrationTest {
     @Test
     void shouldGetCompanyById() throws Exception {
         //given
-        companyRepository.save(MockUtil.getCompany());
-        employeeRepository.save(MockUtil.getEmployee());
+        var id = companyRepository.save(MockUtil.getCompany()).getId();
 
         //when
-        var result = mockMvc.perform(get("/api/company/{id}", TEST_COMPANY_ID)
+        var result = mockMvc.perform(get("/api/company/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON));
 
         //then
@@ -88,8 +83,9 @@ class CompanyControllerIntegrationTest {
     @Test
     void shouldDeleteCompanyById() throws Exception {
         //given
+        var id = companyRepository.save(MockUtil.getCompany()).getId();
         //when
-        var result = mockMvc.perform(delete("/api/company/{id}", TEST_COMPANY_ID)
+        var result = mockMvc.perform(delete("/api/company/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON));
 
         //then
