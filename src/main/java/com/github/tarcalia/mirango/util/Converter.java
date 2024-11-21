@@ -27,7 +27,7 @@ public class Converter<T, K> {
         return result;
     }
 
-    public  <K extends PersistedDto, T extends PersistedEntity> K toDtoPersistedValues(T entity, Class<K> dtoClass) {
+    private   <K extends PersistedDto, T extends PersistedEntity> K toDtoPersistedValues(T entity, Class<K> dtoClass) {
         try {
             K dto = dtoClass.getDeclaredConstructor().newInstance();
             dto.setId(entity.getId());
